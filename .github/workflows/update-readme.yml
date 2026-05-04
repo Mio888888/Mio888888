@@ -2,8 +2,8 @@ name: 更新 README 统计数据
 
 on:
   schedule:
-    - cron: '30 16 * * *'  # 每天北京时间 00:30 执行
-  workflow_dispatch:        # 支持手动触发
+    - cron: "30 16 * * *" # 每天北京时间 00:30 执行
+  workflow_dispatch: # 支持手动触发
 
 jobs:
   update-readme:
@@ -17,11 +17,11 @@ jobs:
       - name: 设置 Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
       - name: 更新 README
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
           GITHUB_USERNAME: ${{ github.repository_owner }}
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
         run: python scripts/update_readme.py
