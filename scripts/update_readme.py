@@ -46,7 +46,7 @@ def api_post(url, data, headers=None):
 
 def get_user_stats():
     headers = {"Authorization": f"token {GITHUB_TOKEN}"}
-    data = api_get("https://api.github.com/user", headers)
+    data = api_get(f"https://api.github.com/users/{GITHUB_USERNAME}", headers)
     return {
         "disk_usage": data.get("disk_usage", 0),
         "hireable": data.get("hireable", False),
@@ -128,7 +128,7 @@ def get_language_stats():
     while True:
         try:
             repos = api_get(
-                f"https://api.github.com/user/repos?per_page=100&page={page}&type=owner",
+                f"https://api.github.com/users/{GITHUB_USERNAME}/repos?per_page=100&page={page}&type=owner",
                 headers,
             )
         except (HTTPError, URLError):
