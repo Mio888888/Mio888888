@@ -1,59 +1,95 @@
 <div align="center">
 <br/>
-<img src="https://raw.githubusercontent.com/Mio888888/Mio888888/main/images/my.gif" alt="Here is a little bit about me!">
+<img width="100%" src="https://raw.githubusercontent.com/Mio888888/Mio888888/main/images/my.gif" alt="这就是我！">
 
 <br />
 
-> **GIF loading a little slow? You can drink a cup of ☕ first**.
+> **GIF 加载有点慢？可以先喝杯 ☕ 等一等哦**。
 
 <br/>
 <br/>
 
-### **Having fun with these stack 👨🏽‍💻**
+<!--START_SECTION:waka-->
+**🐱 我的 GitHub 数据**
 
-<br/>
-<div>
-<img src="https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/typescript%20-%23007ACC.svg?&style=for-the-badge&logo=typescript&logoColor=white"/>
+> 🏆 2026 年共 33 次贡献
+>
+> 📦 已使用 GitHub 存储 217.8 kB
+>
+> 🚫 未开启招聘意向
+>
+> 📜 64 个公开仓库
+>
+> 🔑 3 个私有仓库
+>
+> **我是个早起 🐤**
 
-<img src="https://img.shields.io/badge/c%23%20-%23239120.svg?&style=for-the-badge&logo=c-sharp&logoColor=white"/>
+```text
+🌞 早晨       5 次提交       █░░░░░░░░░░░░░░░░░░░░░░░░    7.35%
+🌆 白天      33 次提交       ████████████░░░░░░░░░░░░░   48.53%
+🌃 傍晚      22 次提交       ████████░░░░░░░░░░░░░░░░░   32.35%
+🌙 深夜       8 次提交       ███░░░░░░░░░░░░░░░░░░░░░░   11.76%
 
-<img src="https://img.shields.io/badge/go-%2300ADD8.svg?&style=for-the-badge&logo=go&logoColor=white"/>
-</div>
-<br/>
-<div>
-<img src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+```
 
-<img src="https://img.shields.io/badge/vuejs%20-%2335495e.svg?&style=for-the-badge&logo=vue.js&logoColor=%234FC08D"/>
+📅 **我在周六最高产**
 
-<img src="https://img.shields.io/badge/git%20-%23F05033.svg?&style=for-the-badge&logo=git&logoColor=white"/>
-</div>
-<br/>
-<div>
-<img src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>
-<img src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/>
-</div>
+```text
+周一       17 次提交       ██████░░░░░░░░░░░░░░░░░░░   25.0%
+周二        2 次提交       ░░░░░░░░░░░░░░░░░░░░░░░░░    2.94%
+周三        8 次提交       ███░░░░░░░░░░░░░░░░░░░░░░   11.76%
+周四        8 次提交       ███░░░░░░░░░░░░░░░░░░░░░░   11.76%
+周五        6 次提交       ██░░░░░░░░░░░░░░░░░░░░░░░    8.82%
+周六       18 次提交       ██████░░░░░░░░░░░░░░░░░░░   26.47%
+周日        9 次提交       ███░░░░░░░░░░░░░░░░░░░░░░   13.24%
 
-<br/>
+```
 
-### and more >w<
+📊 **本周时间分配**
 
-<code><img height="20" src="https://raw.githubusercontent.com/github/explore/5c058a388828bb5fde0bcafd4bc867b5bb3f26f3/topics/graphql/graphql.png"></code>
-<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png"></code>
-<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/cpp/cpp.png"></code>
-<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png"></code>
-<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mysql/mysql.png"></code>
-<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/firebase/firebase.png"></code>
-<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/terminal/terminal.png"></code>
+```text
+💬 编程语言:
+Python                   2 小时 33 分钟      ███████████████████████░░   93.27%
+YAML                     7 分钟              █░░░░░░░░░░░░░░░░░░░░░░░░    4.28%
+Vue                      3 分钟              ░░░░░░░░░░░░░░░░░░░░░░░░░    2.32%
+TOML                     0 秒                ░░░░░░░░░░░░░░░░░░░░░░░░░    0.12%
+Markdown                 0 秒                ░░░░░░░░░░░░░░░░░░░░░░░░░    0.0%
 
-<br/>
+🔥 编辑器:
+PyCharm                  2 小时 44 分钟      █████████████████████████   100.0%
 
-![Stats](https://github-readme-stats.vercel.app/api?username=kelvinosse&theme=dark&show_icons=true&bg_color=1a1a1a&icon_color=a0ffff)
+💻 操作系统:
+Mac                      2 小时 44 分钟      █████████████████████████   100.0%
 
-<br/>
+```
 
-### Can you break this counter?
+**我最常使用 Python 编程**
 
-![Visitor Count](https://visitor-badge.glitch.me/badge?page_id=kelvinosse)
+```text
+Python                   8 个仓库            ████████████░░░░░░░░░░░░░   50.0%
+HTML                     3 个仓库            ████░░░░░░░░░░░░░░░░░░░░░   18.75%
+Shell                    3 个仓库            ████░░░░░░░░░░░░░░░░░░░░░   18.75%
+CSS                      1 个仓库            █░░░░░░░░░░░░░░░░░░░░░░░░    6.25%
+Markdown                 1 个仓库            █░░░░░░░░░░░░░░░░░░░░░░░░    6.25%
 
+```
+
+最后更新于 2026/05/04
+
+<!--END_SECTION:waka-->
+
+<!--
+**Mio888888/Mio888888** 是一个 ✨ _特别_ ✨ 的仓库，因为它的 `README.md`（这个文件）会显示在你的 GitHub 个人主页上。
+
+以下是一些帮助你入门的想法：
+
+- 🔭 我目前正在做 ...
+- 🌱 我目前正在学 ...
+- 👯 我希望合作 ...
+- 🤔 我需要帮助 ...
+- 💬 问我关于 ...
+- 📫 联系方式: ...
+- 😄 称呼: ...
+- ⚡ 趣事: ...
+-->
 </div>
