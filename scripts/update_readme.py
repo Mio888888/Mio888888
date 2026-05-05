@@ -171,6 +171,14 @@ def format_size(kb):
     return f"{kb / 1024:.1f} MB"
 
 
+def format_bytes(b):
+    if b < 1024:
+        return f"{b} B"
+    if b < 1024 * 1024:
+        return f"{b / 1024:.1f} KB"
+    return f"{b / 1024 / 1024:.1f} MB"
+
+
 def make_bar(value, max_val, width=25):
     if max_val == 0:
         return "░" * width
@@ -292,7 +300,7 @@ def generate_content():
         total_bytes = sum(langs.values())
         lang_max = max(langs.values())
         for lang, size in list(langs.items())[:5]:
-            L.append(f"{lang:<24}{format_size(size):<20}{make_bar(size, lang_max)}   {fmt_pct(size, total_bytes):>7}")
+            L.append(f"{lang:<24}{format_bytes(size):<20}{make_bar(size, lang_max)}   {fmt_pct(size, total_bytes):>7}")
         L.append("")
         L.append("```")
 
