@@ -123,7 +123,7 @@ def get_commit_stats():
 
 def get_language_stats():
     headers = {"Authorization": f"token {GITHUB_TOKEN}"}
-    lang_count = defaultdict(int)
+    lang_bytes = defaultdict(int)
     page = 1
     while True:
         try:
@@ -136,10 +136,19 @@ def get_language_stats():
         if not repos:
             break
         for repo in repos:
-            if not repo.get("fork") and repo.get("language"):
-                lang_count[repo["language"]] += 1
+            if repo.get("fork"):
+                continue
+            try:
+                langs = api_get(
+                    f"https://api.github.com/repos/{GITHUB_USERNAME}/{repo['name']}/languages",
+                    headers,
+                )
+            except (HTTPError, URLError):
+                continue
+            for lang, size in langs.items():
+                lang_bytes[lang] += size
         page += 1
-    return dict(sorted(lang_count.items(), key=lambda x: x[1], reverse=True))
+    return dict(sorted(lang_bytes.items(), key=lambda x: x[1], reverse=True))
 
 
 def get_wakatime_stats():
@@ -280,10 +289,10 @@ def generate_content():
         L.append(f"**我最常使用 {top_lang} 编程**")
         L.append("")
         L.append("```text")
-        total_repos = sum(langs.values())
+        total_bytes = sum(langs.values())
         lang_max = max(langs.values())
-        for lang, count in list(langs.items())[:5]:
-            L.append(f"{lang:<24}{count} 个仓库            {make_bar(count, lang_max)}   {fmt_pct(count, total_repos):>7}")
+        for lang, size in list(langs.items())[:5]:
+            L.append(f"{lang:<24}{format_size(size):<20}{make_bar(size, lang_max)}   {fmt_pct(size, total_bytes):>7}")
         L.append("")
         L.append("```")
 
