@@ -145,7 +145,7 @@ def get_language_stats():
 def get_wakatime_stats():
     if not WAKATIME_API_KEY:
         return None
-    auth = base64.b64encode(WAKATIME_API_KEY.encode()).decode()
+    auth = base64.b64encode(f"{WAKATIME_API_KEY}:".encode()).decode()
     headers = {"Authorization": f"Basic {auth}"}
     try:
         data = api_get("https://wakatime.com/api/v1/users/current/stats/last_7_days", headers)
