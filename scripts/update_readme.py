@@ -151,6 +151,48 @@ def get_language_stats():
     return dict(sorted(lang_bytes.items(), key=lambda x: x[1], reverse=True))
 
 
+def aggregate_wakatime_items(days, key):
+    totals = defaultdict(float)
+    for day in days:
+        for item in day.get(key, []):
+            name = item.get("name")
+            seconds = item.get("total_seconds", 0) or 0
+            if name and seconds:
+                totals[name] += seconds
+
+    total_seconds = sum(totals.values())
+    if not total_seconds:
+        return []
+
+    return [
+        {
+            "name": name,
+            "total_seconds": seconds,
+            "percent": round(seconds / total_seconds * 100, 2),
+        }
+        for name, seconds in sorted(totals.items(), key=lambda x: x[1], reverse=True)
+    ]
+
+
+def get_wakatime_summary_stats(headers):
+    today = datetime.now(timezone(timedelta(hours=TZ_OFFSET))).date()
+    start = today - timedelta(days=6)
+    try:
+        data = api_get(
+            f"https://wakatime.com/api/v1/users/current/summaries?start={start}&end={today}",
+            headers,
+        )
+        days = data.get("data", [])
+    except (HTTPError, URLError):
+        return {}
+
+    return {
+        "languages": aggregate_wakatime_items(days, "languages"),
+        "editors": aggregate_wakatime_items(days, "editors"),
+        "operating_systems": aggregate_wakatime_items(days, "operating_systems"),
+    }
+
+
 def get_wakatime_stats():
     if not WAKATIME_API_KEY:
         return None
@@ -158,9 +200,18 @@ def get_wakatime_stats():
     headers = {"Authorization": f"Basic {auth}"}
     try:
         data = api_get("https://wakatime.com/api/v1/users/current/stats/last_7_days", headers)
-        return data["data"]
-    except (HTTPError, URLError, KeyError):
-        return None
+        stats = data.get("data") or {}
+    except (HTTPError, URLError):
+        stats = {}
+
+    detail_keys = ("languages", "editors", "operating_systems")
+    if any(not stats.get(key) for key in detail_keys):
+        summary_stats = get_wakatime_summary_stats(headers)
+        for key in detail_keys:
+            if not stats.get(key) and summary_stats.get(key):
+                stats[key] = summary_stats[key]
+
+    return stats or None
 
 
 # ── 格式化工具 ──────────────────────────────────────────────
@@ -203,6 +254,21 @@ def fmt_duration(seconds):
     if not h and s:
         parts.append(f"{s} 秒")
     return " ".join(parts) or "0 秒"
+
+
+def append_wakatime_section(lines, title, items):
+    lines.append(title)
+    if not items:
+        lines.append("暂无数据")
+        return
+
+    max_seconds = max(item.get("total_seconds", 0) or 0 for item in items) or 1
+    for item in items[:5]:
+        seconds = item.get("total_seconds", 0) or 0
+        percent = item.get("percent", 0) or 0
+        lines.append(
+            f'{item.get("name", "未知"):<24}{fmt_duration(seconds):<20}{make_bar(seconds, max_seconds)}   {percent:>6}%'
+        )
 
 
 # ── 生成内容 ────────────────────────────────────────────────
@@ -273,20 +339,11 @@ def generate_content():
         L.append("📊 **本周时间分配**")
         L.append("")
         L.append("```text")
-        L.append("💬 编程语言:")
-        for item in waka.get("languages", [])[:5]:
-            sec = item.get("total_seconds", 0)
-            L.append(f'{item["name"]:<24}{fmt_duration(sec):<20}{make_bar(sec, waka["languages"][0]["total_seconds"])}   {item["percent"]:>6}%')
+        append_wakatime_section(L, "💬 编程语言:", waka.get("languages", []))
         L.append("")
-        L.append("🔥 编辑器:")
-        for item in waka.get("editors", [])[:5]:
-            sec = item.get("total_seconds", 0)
-            L.append(f'{item["name"]:<24}{fmt_duration(sec):<20}{make_bar(sec, waka["languages"][0]["total_seconds"])}   {item["percent"]:>6}%')
+        append_wakatime_section(L, "🔥 编辑器:", waka.get("editors", []))
         L.append("")
-        L.append("💻 操作系统:")
-        for item in waka.get("operating_systems", [])[:5]:
-            sec = item.get("total_seconds", 0)
-            L.append(f'{item["name"]:<24}{fmt_duration(sec):<20}{make_bar(sec, waka["languages"][0]["total_seconds"])}   {item["percent"]:>6}%')
+        append_wakatime_section(L, "💻 操作系统:", waka.get("operating_systems", []))
         L.append("")
         L.append("```")
 
